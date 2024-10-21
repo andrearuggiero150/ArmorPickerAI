@@ -1,6 +1,6 @@
 <div align="center">
     <img src="Docs/logo.png" alt="ArmorPickerAI" width="300" />
-    <p>ArmorPickerAI</p>
+    <h1>ArmorPickerAI</h1>
 </div>
 
 ## Descrizione
