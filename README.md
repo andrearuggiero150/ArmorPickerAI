@@ -1,4 +1,4 @@
-![ArmorPickerAI](.Docs/logo.png)
+![ArmorPickerAI](Docs/logo.png)
 
 ## Descrizione
 
