@@ -1,4 +1,7 @@
-![ArmorPickerAI](Docs/logo.png)
+<div align="center">
+    <img src="Docs/logo.png" alt="ArmorPickerAI" width="300" />
+    <p>ArmorPickerAI</p>
+</div>
 
 ## Descrizione
 
