@@ -47,9 +47,6 @@ public class ArmorPieceDAO {
             apms.mergeSort(chestplates, 0, chestplates.size() - 1);
             apms.mergeSort(leggings, 0, leggings.size() - 1);
             apms.mergeSort(cloaks, 0, cloaks.size() - 1);
-            for(int i=0; i<helmets.size(); i++) {
-                System.out.println(helmets.get(i));
-            }
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("File non trovato");
