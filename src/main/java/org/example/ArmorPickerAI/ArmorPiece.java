@@ -1,5 +1,7 @@
 package org.example.ArmorPickerAI;
 
+import java.util.Objects;
+
 public class ArmorPiece {
     private String name;
     private String type;
@@ -110,5 +112,17 @@ public class ArmorPiece {
     @Override
     public String toString() {
         return name + ", " + type + ", " + rarity + ", " + mobility + ", " + resilience + ", " + recovery + ", " + discipline + ", " + intellect + ", " + strength + "\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ArmorPiece that)) return false;
+        return mobility == that.mobility && resilience == that.resilience && recovery == that.recovery && discipline == that.discipline && intellect == that.intellect && strength == that.strength && tot == that.tot && Objects.equals(name, that.name) && Objects.equals(type, that.type) && Objects.equals(rarity, that.rarity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, type, rarity, mobility, resilience, recovery, discipline, intellect, strength, tot);
     }
 }

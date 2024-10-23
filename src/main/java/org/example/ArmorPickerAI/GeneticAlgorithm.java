@@ -1,6 +1,7 @@
 package org.example.ArmorPickerAI;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 
 public class GeneticAlgorithm {
@@ -28,7 +29,7 @@ public class GeneticAlgorithm {
         if(numeroMantelli < min)
             min = numeroMantelli;
 
-        int numeroPopolazione = min * min;
+        int numeroPopolazione = min*min;
 
         for (int i = 0; i < numeroPopolazione; i++) {
             ArmorSet armorSet = new ArmorSet();
@@ -100,26 +101,79 @@ public class GeneticAlgorithm {
     public ArmorSet crossoverParents(ArmorSet primo, ArmorSet secondo) {
         Random random = new Random();
         ArmorSet figlio = new ArmorSet();
-        if(random.nextBoolean())
+        boolean presoDaPrimo = false;
+        boolean presoDaSecondo = false;
+        if (random.nextBoolean()) {
             figlio.setHelmet(primo.getHelmet());
-        else
+            presoDaPrimo = true;
+        } else {
             figlio.setHelmet(secondo.getHelmet());
-        if(random.nextBoolean())
+            presoDaSecondo = true;
+        }
+        if (random.nextBoolean()) {
             figlio.setGloves(primo.getGloves());
-        else
+            presoDaPrimo = true;
+        } else {
             figlio.setGloves(secondo.getGloves());
-        if(random.nextBoolean())
+            presoDaSecondo = true;
+        }
+        if (random.nextBoolean()) {
             figlio.setChestplate(primo.getChestplate());
-        else
+            presoDaPrimo = true;
+        } else {
             figlio.setChestplate(secondo.getChestplate());
-        if(random.nextBoolean())
+            presoDaSecondo = true;
+        }
+        if (random.nextBoolean()) {
             figlio.setLeggings(primo.getLeggings());
-        else
+            presoDaPrimo = true;
+        } else {
             figlio.setLeggings(secondo.getLeggings());
-        if(random.nextBoolean())
+            presoDaSecondo = true;
+        }
+        if (random.nextBoolean()) {
             figlio.setCloack(primo.getCloack());
-        else
+            presoDaPrimo = true;
+        } else {
             figlio.setCloack(secondo.getCloack());
+            presoDaSecondo = true;
+        }
+        if (!presoDaPrimo) {
+            int pezzo = random.nextInt(0, 5);
+            if(pezzo == 0) {
+                figlio.setHelmet(primo.getHelmet());
+            }
+            if(pezzo == 1) {
+                figlio.setGloves(primo.getGloves());
+            }
+            if(pezzo == 2) {
+                figlio.setChestplate(primo.getChestplate());
+            }
+            if(pezzo == 3) {
+                figlio.setLeggings(primo.getLeggings());
+            }
+            if(pezzo == 4) {
+                figlio.setCloack(primo.getCloack());
+            }
+        }
+        if (!presoDaSecondo) {
+            int pezzo = random.nextInt(0, 5);
+            if(pezzo == 0) {
+                figlio.setHelmet(secondo.getHelmet());
+            }
+            if(pezzo == 1) {
+                figlio.setGloves(secondo.getGloves());
+            }
+            if(pezzo == 2) {
+                figlio.setChestplate(secondo.getChestplate());
+            }
+            if(pezzo == 3) {
+                figlio.setLeggings(secondo.getLeggings());
+            }
+            if(pezzo == 4) {
+                figlio.setCloack(secondo.getCloack());
+            }
+        }
         return figlio;
     }
 
@@ -131,34 +185,83 @@ public class GeneticAlgorithm {
                 figlio.setHelmet(armorPieceDAO.helmets.get(random.nextInt(0, min)));
             }
             if(pezzo == 1) {
-                figlio.setHelmet(armorPieceDAO.gloves.get(random.nextInt(0, min)));
+                figlio.setGloves(armorPieceDAO.gloves.get(random.nextInt(0, min)));
             }
             if(pezzo == 2) {
-                figlio.setHelmet(armorPieceDAO.chestplates.get(random.nextInt(0, min)));
+                figlio.setChestplate(armorPieceDAO.chestplates.get(random.nextInt(0, min)));
             }
             if(pezzo == 3) {
-                figlio.setHelmet(armorPieceDAO.leggings.get(random.nextInt(0, min)));
+                figlio.setLeggings(armorPieceDAO.leggings.get(random.nextInt(0, min)));
             }
             if(pezzo == 4) {
-                figlio.setHelmet(armorPieceDAO.cloaks.get(random.nextInt(0, min)));
+                figlio.setCloack(armorPieceDAO.cloaks.get(random.nextInt(0, min)));
             }
         }
         return figlio;
     }
 
+    public ArrayList<ArmorSet> ArchiveStrategy(ArrayList<ArmorSet> popolazioneSelezionata, ArrayList<ArmorSet> archivio, ArrayList<Integer> pesi) {
+        ArrayList<ArmorSet> nuovoArchivio = new ArrayList<>();
+        int maxSize = (1 * popolazioneSelezionata.size()) / 2;
+        int i = 0, j = 0;
+        if (archivio.isEmpty()) {
+            while (i < popolazioneSelezionata.size() && nuovoArchivio.size() < maxSize) {
+                nuovoArchivio.add(popolazioneSelezionata.get(i));
+                i++;
+            }
+        } else {
+            while (i < popolazioneSelezionata.size() && j < archivio.size() && nuovoArchivio.size() < maxSize) {
+                ArmorSet fromPopolazione = popolazioneSelezionata.get(i);
+                ArmorSet fromArchivio = archivio.get(j);
+
+                if (fitnessCalculator(fromPopolazione, pesi) > fitnessCalculator(fromArchivio, pesi)) {
+                    nuovoArchivio.add(fromPopolazione);
+                    i++;
+                } else {
+                    nuovoArchivio.add(fromArchivio);
+                    j++;
+                }
+            }
+            while (i < popolazioneSelezionata.size() && nuovoArchivio.size() < maxSize) {
+                nuovoArchivio.add(popolazioneSelezionata.get(i));
+                i++;
+            }
+            while (j < archivio.size() && nuovoArchivio.size() < maxSize) {
+                nuovoArchivio.add(archivio.get(j));
+                j++;
+            }
+        }
+        return nuovoArchivio;
+    }
+
+
+
     public ArrayList<ArmorSet> populationEvolution(int percentualeMutazione, String account, ArrayList<Integer>pesi) {
         ArrayList<ArmorSet> popolazione = populationInizializer(account);
+        ArrayList<ArmorSet> archivio = new ArrayList<>();
         Random random = new Random();
         while(popolazione.size() > 10) {
             ArrayList<ArmorSet> popolazioneSelezionata = populationSelection(pesi, popolazione);
+            archivio = ArchiveStrategy(popolazioneSelezionata, archivio, pesi);
             ArrayList<ArmorSet> nuovaGenerazione = new ArrayList<>();
             while (nuovaGenerazione.size() < popolazioneSelezionata.size()) {
                 ArmorSet genitore1 = popolazioneSelezionata.get(random.nextInt(0, popolazioneSelezionata.size()));
                 ArmorSet genitore2 = popolazioneSelezionata.get(random.nextInt(0, popolazioneSelezionata.size()));
+                while(genitore1.equals(genitore2)) {
+                    genitore2 = popolazioneSelezionata.get(random.nextInt(0, popolazioneSelezionata.size()));
+                }
                 ArmorSet figlio = crossoverParents(genitore1, genitore2);
                 nuovaGenerazione.add(mutationSon(figlio, percentualeMutazione));
             }
             popolazione = nuovaGenerazione;
+            popolazione.addAll(archivio);
+            ArrayList<ArmorSet> temp = new ArrayList<>();
+            for (ArmorSet armorSet : popolazione) {
+                if (!temp.contains(armorSet)) {
+                    temp.add(armorSet);
+                }
+            }
+            popolazione = temp;
         }
         return popolazione;
     }

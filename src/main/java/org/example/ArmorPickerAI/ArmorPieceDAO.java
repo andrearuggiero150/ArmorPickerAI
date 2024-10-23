@@ -3,6 +3,7 @@ package org.example.ArmorPickerAI;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ArmorPieceDAO {
@@ -50,6 +51,8 @@ public class ArmorPieceDAO {
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("File non trovato");
+        } catch (NoSuchElementException e) {
+            System.out.println("File vuoto");
         }
     }
 }

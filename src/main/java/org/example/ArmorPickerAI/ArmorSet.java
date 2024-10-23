@@ -1,5 +1,7 @@
 package org.example.ArmorPickerAI;
 
+import java.util.Objects;
+
 public class ArmorSet {
     private ArmorPiece helmet;
     private ArmorPiece gloves;
@@ -53,5 +55,17 @@ public class ArmorSet {
     @Override
     public String toString() {
         return "Helmet: " + helmet.toString() + "Gloves: " + gloves.toString() + "Chestplate: " + chestplate.toString() + "Leggings: " + leggings.toString() + "Cloack: " + cloack + "\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ArmorSet armorSet)) return false;
+        return Objects.equals(helmet, armorSet.helmet) && Objects.equals(gloves, armorSet.gloves) && Objects.equals(chestplate, armorSet.chestplate) && Objects.equals(leggings, armorSet.leggings) && Objects.equals(cloack, armorSet.cloack);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(helmet, gloves, chestplate, leggings, cloack);
     }
 }
