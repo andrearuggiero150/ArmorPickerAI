@@ -4,7 +4,7 @@
 </div>
 
 ## Descrizione
-
+L’obiettivo di ArmorPickerAI è quello di prendere tutte le armature che un giocatore può riporre nel suo inventario o nel suo deposito nel gioco DungeonMasterAI e trovare una giusta conbinazione di pezzi per la creazione di un armor set che massimizzi le statistiche del personaggio in generale per tutte le caratteristiche e che nello specifico possa focalizzarsi su una caratteristica per macro categoria che il giocatore vuole massimizzare per adattare l’utilizzo del suo personaggio al suo stile di gioco.
 
 
 ## Autori
