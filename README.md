@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="Docs/logo.png" alt="ArmorPickerAI" width="230" />
+    <img src="Docs/Logo.png" alt="ArmorPickerAI" width="230" />
     <h1>ArmorPickerAI</h1>
 </div>
 
@@ -14,7 +14,7 @@ L’obiettivo di ArmorPickerAI è quello di prendere tutte le armature che un gi
 ## Documentazione 
 
 - [Documentazione](./Docs/documentazione.pdf)
-- [Demo](./Docs/demo.mov)
+- [Demo](./Docs/Demo.mov)
 
 ## Contribuire
 
