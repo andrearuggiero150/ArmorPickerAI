@@ -1,5 +1,6 @@
 package org.example.ArmorPickerAI;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -7,7 +8,7 @@ import java.util.Random;
 public class GeneticAlgorithm {
     private ArmorPieceDAO armorPieceDAO;
     private int min;
-    public ArrayList<ArmorSet> populationInizializer(String account) {
+    public ArrayList<ArmorSet> populationInizializer(String account) throws FileNotFoundException {
         armorPieceDAO = new ArmorPieceDAO();
         armorPieceDAO.loadArmorPiece(account);
         ArrayList<ArmorSet> population = new ArrayList<>();
@@ -29,7 +30,7 @@ public class GeneticAlgorithm {
         if(numeroMantelli < min)
             min = numeroMantelli;
 
-        int numeroPopolazione = min*min;
+        int numeroPopolazione = 10000;
 
         for (int i = 0; i < numeroPopolazione; i++) {
             ArmorSet armorSet = new ArmorSet();
@@ -72,7 +73,7 @@ public class GeneticAlgorithm {
 
         for (int i = 0; i < statistiche.size(); i++) {
             if (statistiche.get(i) > 100) {
-                int valorePenalizzato = statistiche.get(i) - 100;
+                int valorePenalizzato = statistiche.get(i) / 2;
                 statistiche.set(i, valorePenalizzato);
             }
             sommaPonderata += statistiche.get(i) * pesi.get(i);
@@ -236,7 +237,7 @@ public class GeneticAlgorithm {
 
 
 
-    public ArrayList<ArmorSet> populationEvolution(int percentualeMutazione, String account, ArrayList<Integer>pesi) {
+    public ArrayList<ArmorSet> populationEvolution(int percentualeMutazione, String account, ArrayList<Integer>pesi) throws FileNotFoundException {
         ArrayList<ArmorSet> popolazione = populationInizializer(account);
         ArrayList<ArmorSet> archivio = new ArrayList<>();
         Random random = new Random();

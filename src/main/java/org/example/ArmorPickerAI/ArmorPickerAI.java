@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class ArmorPickerAI extends JFrame {
     private JPanel panel1;
@@ -176,10 +178,19 @@ public class ArmorPickerAI extends JFrame {
                 pesi.add(pesoForza);
 
                 GeneticAlgorithm ga = new GeneticAlgorithm();
-                ArrayList<ArmorSet> temp = ga.populationEvolution(percentualeMutazione, textField1.getText(), pesi);
-                textArea1.setText("");
-                for(int i=0; i<temp.size(); i++) {
-                    textArea1.append(temp.get(i).toString());
+                ArrayList<ArmorSet> temp = null;
+                try {
+                    temp = ga.populationEvolution(percentualeMutazione, textField1.getText(), pesi);
+                    textArea1.setText("");
+                    for(int i=0; i<temp.size(); i++) {
+                        textArea1.append(temp.get(i).toString());
+                    }
+                } catch (FileNotFoundException er) {
+                    JOptionPane.showMessageDialog(null, "Il file di cui hai inserito il path non è stato trovato", "File non trovato", JOptionPane.WARNING_MESSAGE);
+                } catch (NoSuchElementException er) {
+                    JOptionPane.showMessageDialog(null, "Il file di cui hai inserito il path è vuoto", "File vuoto", JOptionPane.WARNING_MESSAGE);
+                } catch (ArrayIndexOutOfBoundsException er) {
+                    JOptionPane.showMessageDialog(null, "Il file di cui hai inserito il path non è valido", "File non valido", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
