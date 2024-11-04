@@ -23,7 +23,7 @@ L’obiettivo di ArmorPickerAI è quello di prendere tutte le armature che un gi
 
 Se desideri eseguire questo progetto, segui queste linee guida:
 
-1. Scarica il file [ArmorPickerAI](./out/artifacts/ArmorPickerAI.jar)
+1. Scarica il file [ArmorPickerAI](out/artifacts/ArmorPickerAI_jar)
 2. Lancia il programma da terminale eseguendo il seguente comando: (`java -jar PATH/ArmorPickerAI.jar`) sostituendo PATH con il percorso dove è situato il file.
 
 ## Contribuire
