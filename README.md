@@ -6,7 +6,6 @@
 ## Descrizione
 L’obiettivo di ArmorPickerAI è quello di prendere tutte le armature che un giocatore può riporre nel suo inventario o nel suo deposito nel gioco DungeonMasterAI e trovare una giusta conbinazione di pezzi per la creazione di un armor set che massimizzi le statistiche del personaggio in generale per tutte le caratteristiche e che nello specifico possa focalizzarsi su una caratteristica per macro categoria che il giocatore vuole massimizzare per adattare l’utilizzo del suo personaggio al suo stile di gioco.
 
-
 ## Autori
 
 - [Andrea Ruggiero](https://github.com/andrearuggiero150) - *Team Member*
@@ -15,6 +14,17 @@ L’obiettivo di ArmorPickerAI è quello di prendere tutte le armature che un gi
 
 - [Documentazione](./Docs/documentazione.pdf)
 - [Demo](./Docs/demo.mov)
+
+## Requisiti
+
+**Java**: Assicurati di avere installato Java (versione 11 o successiva). Puoi verificare la versione di Java eseguendo il seguente comando nel terminale: (`java -version`)
+
+## Eseguire 
+
+Se desideri eseguire questo progetto, segui queste linee guida:
+
+1. Scarica il file [ArmorPickerAI](./out/artifacts/ArmorPickerAI.jar)
+2. Lancia il programma da terminale eseguendo il seguente comando: (`java -jar PATH/ArmorPickerAI.jar`) sostituendo PATH con il percorso dove è situato il file.
 
 ## Contribuire
 
