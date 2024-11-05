@@ -168,7 +168,7 @@ public class ArmorPickerAI extends JFrame {
                 if (radioButton7.isSelected())
                     pesoForza = Integer.parseInt(comboBox2.getSelectedItem().toString());
 
-                int percentualeMutazione = Integer.parseInt(comboBox1.getSelectedItem().toString());
+                int percentualeMutazione = Integer.parseInt(comboBox3.getSelectedItem().toString());
                 ArrayList<Integer> pesi = new ArrayList<>();
                 pesi.add(pesoMobilita);
                 pesi.add(pesoResilienza);
@@ -179,6 +179,7 @@ public class ArmorPickerAI extends JFrame {
 
                 GeneticAlgorithm ga = new GeneticAlgorithm();
                 ArrayList<ArmorSet> temp = null;
+
                 try {
                     temp = ga.populationEvolution(percentualeMutazione, textField1.getText(), pesi);
                     textArea1.setText("");

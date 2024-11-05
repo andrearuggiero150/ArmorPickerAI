@@ -30,7 +30,7 @@ public class GeneticAlgorithm {
         if(numeroMantelli < min)
             min = numeroMantelli;
 
-        int numeroPopolazione = 10000;
+        int numeroPopolazione = 20000;
 
         for (int i = 0; i < numeroPopolazione; i++) {
             ArmorSet armorSet = new ArmorSet();
@@ -79,7 +79,6 @@ public class GeneticAlgorithm {
             sommaPonderata += statistiche.get(i) * pesi.get(i);
             sommaPesi += pesi.get(i);
         }
-        System.out.println(sommaPonderata / sommaPesi);
         return sommaPonderata / sommaPesi;
     }
 
