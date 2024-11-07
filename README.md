@@ -13,7 +13,6 @@ L’obiettivo di ArmorPickerAI è quello di prendere tutte le armature che un gi
 ## Documentazione 
 
 - [Documentazione](./Docs/Documentazione.pdf)
-- [Testing Report](./Docs/TestingReport.xlsx)
 - [Demo](./Docs/Demo.mov)
 
 ## Requisiti
